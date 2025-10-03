@@ -4,15 +4,24 @@ import (
 	"fmt"
 )
 
-func InitGrille(){
-	const ligne, colone = 6, 7
-	var grille [ligne][colone]int
+func Init_Grille(){
 
-	for i := 0 ; i < ligne; i++ {
-        for j := 0; j < colone; j++ {
-            grille[i][j] = 0
+	for x := 0 ; x < 7; x++ {
+        for y := 0; y < 6; y++ {
+            *Grille[x][y] = 0
 		}
 	}
-	fmt.Print(grille)
-	
+	fmt.Print(*Grille)
+
+}
+
+func Grille_Jeton(y int, nbjoueur int){
+	for x := 5; x > 0; x--{
+		if *Grille[y][x] != 0 {
+			break
+		} else {
+			*Grille[x][y] = nbjoueur
+		}
+	}
+	return *Grille
 }
