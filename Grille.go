@@ -14,4 +14,5 @@ func InitGrille(){
 		}
 	}
 	fmt.Print(grille)
+	
 }
