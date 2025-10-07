@@ -20,8 +20,8 @@ func Grille_Jeton(y int, nbjoueur int, Grille *[6][7]int) string{
         return "Erreur: colonne invalide"
     }
     
-	for x := 5; x > 0; x--{
-		if Grille[y][x] == 0 {
+	for x := 5; x >= 0; x--{
+		if Grille[x][y] == 0 {
 			Grille[x][y] = nbjoueur
 			return "Jeton placé avec succès"
 		}
