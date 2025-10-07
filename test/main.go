@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	var Grille *[]int
+	var Grille [6][7]int
 
-	power4.Init_Grille()
+	power4.Init_Grille(&Grille)
 }
