@@ -6,25 +6,6 @@ const (
 	Player2 = 2
 )
 
-func DropToken(g *[6][7]int, col int, player int) (int, bool) {
-	if col < 0 || col >= 7 {
-		return -1, false
-	}
-	if player != Player1 && player != Player2 {
-		return -1, false
-	}
-	if g[0][col] != Empty {
-		return -1, false
-	} //la colonne est pleine
-	for r := 5; r >= 0; r-- {
-		if g[r][col] == Empty {
-			g[r][col] = player
-			return r, true
-		}
-	}
-	return -1, false
-}
-
 func CanPlay(g *[6][7]int, col int) bool {
 	return col > 0 && col < 7 && g[0][col] == Empty
 }
