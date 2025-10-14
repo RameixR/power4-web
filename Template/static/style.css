@@ -15,28 +15,28 @@ body {
 .container {
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
-    padding: 50% 50%;
-    border-radius: 20%;
-    box-shadow: 0 0 25% rgba(0, 0, 0, 0.3);
+    padding: 5% 10%;
+    border-radius: 2em;
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.3);
 }
 
 /* --- Titre --- */
 h1 {
     font-size: 3rem;
-    margin-bottom: 40%;
+    margin-bottom: 5%;
     text-transform: uppercase;
-    letter-spacing: 3%;
+    letter-spacing: 0.3em;
 }
 
 /* --- Boutons --- */
 .buttons button {
     display: block;
-    width: 150%;
-    margin: 10% auto;
-    padding: 15%;
+    width: 60%;
+    margin: 2% auto;
+    padding: 1em 0;
     font-size: 1.2rem;
     border: none;
-    border-radius: 10%;
+    border-radius: 0.8em;
     cursor: pointer;
     transition: 0.3s;
 }
