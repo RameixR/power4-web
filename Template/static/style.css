@@ -15,7 +15,7 @@ body {
 .container {
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
-    padding: 40% 60%;
+    padding: 50% 50%;
     border-radius: 20%;
     box-shadow: 0 0 25% rgba(0, 0, 0, 0.3);
 }
@@ -31,7 +31,7 @@ h1 {
 /* --- Boutons --- */
 .buttons button {
     display: block;
-    width: 275%;
+    width: 150%;
     margin: 10% auto;
     padding: 15%;
     font-size: 1.2rem;
@@ -42,7 +42,7 @@ h1 {
 }
 
 .play {
-    background-color: hsla(58, 90%, 27%, 0.984);
+    background-color: hsla(56, 100%, 50%, 0.984);
     color: white;
 }
 
