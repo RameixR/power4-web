@@ -1,5 +1,9 @@
 package power4
 
+import( 
+	"fmt"
+)
+
 const (
 	Empty   = 0
 	Player1 = 1
@@ -9,18 +13,7 @@ const (
 func CanPlay(g *[6][7]int, col int) bool {
 	return col >= 0 && col < 7 && g[0][col] == Empty
 }
-func DropToken(g *[6][7]int, col int, player int) (int, bool) {
-    if !CanPlay(g, col) || (player != Player1 && player != Player2) {
-        return -1, false
-    }
-    for r := 5; r >= 0; r-- {
-        if g[r][col] == Empty {
-            g[r][col] = player
-            return r, true
-        }
-    }
-    return -1, false
-}
+
 
 func CheckWin(g *[6][7]int, row, col, player int) bool {
 	if player == Empty {
@@ -55,4 +48,25 @@ func IsDraw (g *[6][7]int) bool {
 		}
 	}
 	return true 
+}
+
+func Grille_Jeton(y int, nbjoueur int, Grille *[6][7]int) string {
+	if y < 0 || y >= 7 {
+        return "Erreur: colonne invalide"
+    }
+    
+	for x := 5; x >= 0; x--{
+		if Grille[x][y] == 0 {
+			Grille[x][y] = nbjoueur
+			if CheckWin(Grille, x, y, nbjoueur) {
+				return fmt.Sprintf("Le joueur %d a gagné !", nbjoueur)
+			} else if IsDraw(Grille) {
+				return("Match nul !!")
+			} else {
+				return( "Jeton placé avec succès")
+			}
+		}
+	}
+	fmt.Print(Grille)
+	return "Erreur: colonne pleine"
 }
