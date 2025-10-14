@@ -7,7 +7,19 @@ const (
 )
 
 func CanPlay(g *[6][7]int, col int) bool {
-	return col > 0 && col < 7 && g[0][col] == Empty
+	return col >= 0 && col < 7 && g[0][col] == Empty
+}
+func DropToken(g *[6][7]int, col int, player int) (int, bool) {
+    if !CanPlay(g, col) || (player != Player1 && player != Player2) {
+        return -1, false
+    }
+    for r := 5; r >= 0; r-- {
+        if g[r][col] == Empty {
+            g[r][col] = player
+            return r, true
+        }
+    }
+    return -1, false
 }
 
 func CheckWin(g *[6][7]int, row, col, player int) bool {
@@ -26,7 +38,7 @@ func CheckWin(g *[6][7]int, row, col, player int) bool {
 func countDir(g *[6][7]int, row, col, dr, dc, player int) int {
 	count := 0
 	for {
-		row += dr
+		row += dr //rangé 
 		col += dc 
 		if row < 0 || row >= 6 || col < 0 || col >= 7 || g[row][col] != player {
 			break 
