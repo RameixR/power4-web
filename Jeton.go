@@ -28,11 +28,8 @@ func countDir(g *[6][7]int, row, col, dr, dc, player int) int {
 	for {
 		row += dr
 		col += dc 
-		if row < 0 || row >= 6 || col < 0 || col >= 7{
+		if row < 0 || row >= 6 || col < 0 || col >= 7 || g[row][col] != player {
 			break 
-		}
-		if g[row][col] != player {
-			break
 		}
 		count ++
 	}
