@@ -15,28 +15,28 @@ body {
 .container {
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
-    padding: 50% 50%;
-    border-radius: 20%;
-    box-shadow: 0 0 25% rgba(0, 0, 0, 0.3);
+    padding: 5% 10%;
+    border-radius: 2em;
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.3);
 }
 
 /* --- Titre --- */
 h1 {
     font-size: 3rem;
-    margin-bottom: 40%;
+    margin-bottom: 5%;
     text-transform: uppercase;
-    letter-spacing: 3%;
+    letter-spacing: 0.3em;
 }
 
 /* --- Boutons --- */
 .buttons button {
     display: block;
-    width: 150%;
-    margin: 10% auto;
-    padding: 15%;
+    width: 60%;
+    margin: 2% auto;
+    padding: 1em 0;
     font-size: 1.2rem;
     border: none;
-    border-radius: 10%;
+    border-radius: 0.8em;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -68,3 +68,54 @@ h1 {
 .rules:hover {
     background-color: #00cec9;
 }
+
+.cols {
+      display: grid;
+      grid-template-columns: repeat(7, 50%);
+      gap: 6%;
+      margin: 10% auto
+    }
+
+    .colsbouton {
+      height: 30%;
+      cursor: pointer
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 50%);
+      gap: 6%;
+      background: #317AC1;
+      padding: 8%;
+      border-radius: 10%;
+      width: max-content;
+      margin: 0 auto
+    }
+
+    .case {
+      width: 50%;
+      height: 50%;
+      border-radius: 50%;
+      background: #e9ecefc0
+    }
+
+    .p1 {
+      background: red
+    }
+
+    .p2 {
+      background: yellow
+    }
+
+    .statut {
+      margin-top: 1.2%;
+      text-align: center;
+      font-weight: bold
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 0.8%;
+      margin: 1% 0;
+      justify-content: center
+    }
