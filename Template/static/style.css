@@ -115,7 +115,7 @@ h1 {
 
     .toolbar {
       display: flex;
-      gap: 8px;
-      margin: 10px 0;
+      gap: 0.8%;
+      margin: 1% 0;
       justify-content: center
     }
