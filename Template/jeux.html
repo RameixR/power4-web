@@ -19,7 +19,7 @@
 
     <div class="cols">
       {{range .Cols}}
-      <form method="post" action="/move">
+      <form method="post" action="/play">
         <input type="hidden" name="col" value="{{.}}">
         <button class="colsbouton" type="submit" title="Colonne {{.}}">▼</button>
       </form>
