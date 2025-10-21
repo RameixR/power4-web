@@ -48,7 +48,7 @@ h1 {
 }
 
 .colsbouton {
-    height: 30%;
+    height: 90%;
     cursor: pointer
 }
 
@@ -64,13 +64,15 @@ h1 {
     padding: 1vw;
     border-radius: 10px;
     margin: 0 auto;
+    align-items: center;
+    justify-items: center;
 }
 
 .case {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1.1;
     /*force la case à etre carré */
+    height: 100%;
     border-radius: 50%;
-    width: 100%;
     background: #e9ecefc0;
 }
 
