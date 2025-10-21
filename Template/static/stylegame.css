@@ -5,7 +5,8 @@ body {
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     color: white;
 }
@@ -53,13 +54,14 @@ h1 {
 
 .grid {
     display: grid;
-    width: 90vw;
-    max-width: 900px;
+    width: 80vw;
+    max-width: 700px;
+    height: 70vh;
     grid-template-columns: repeat(7, 1fr);
     /*7 colonne égale avec 1fraction = prend chacun 1 fraction dispo pour compléter l'espace*/
     gap: 1vw;
     background: #317AC1;
-    padding: 2vw;
+    padding: 1vw;
     border-radius: 10px;
     margin: 0 auto;
 }
@@ -68,6 +70,7 @@ h1 {
     aspect-ratio: 1 / 1;
     /*force la case à etre carré */
     border-radius: 50%;
+    width: 100%;
     background: #e9ecefc0;
 }
 
