@@ -17,11 +17,17 @@
       <form method="post" action="/reset"><button type="submit">Réinitialiser</button></form>
     </div>
 
+    {{if not .GameOver}}
+    <div class="statut">Tour: Joueur {{.Current}} </div>
+    {{else}}
+    <div class="statut">Partie terminée</div>
+    {{end}}
+
     <div class="cols">
       {{range .Cols}}
       <form method="post" action="/play">
         <input type="hidden" name="col" value="{{.}}">
-        <button class="colsbouton" type="submit" title="Colonne {{.}}">▼</button>
+        <button class="colsbouton" type="submit" {{if $.GameOver}}disabled{{end}}>▼</button>
       </form>
       {{end}}
     </div>
