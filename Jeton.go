@@ -1,9 +1,5 @@
 package power4
 
-import( 
-	"fmt"
-)
-
 const (
 	Empty   = 0
 	Player1 = 1
@@ -14,13 +10,28 @@ func CanPlay(g *[6][7]int, col int) bool {
 	return col >= 0 && col < 7 && g[0][col] == Empty
 }
 
+func DropToken(g *[6][7]int, col int, player int) (int, bool) {
+	if player != Player1 && player != Player2 {
+		return -1, false
+	}
+	if !CanPlay(g, col) {
+		return -1, false
+	}
+	for r := 5; r >= 0; r-- {
+		if g[r][col] == Empty {
+			g[r][col] = player
+			return r, true
+		}
+	}
+	return -1, false
+}
 
 func CheckWin(g *[6][7]int, row, col, player int) bool {
 	if player == Empty {
 		return false
 	}
-	direction := [][2]int{{0, 1}, {1, 0}, {1, 1}, {1, -1}}
-	for _, d := range direction {
+	dirs := [][2]int{{0, 1}, {1, 0}, {1, 1}, {1, -1}}
+	for _, d := range dirs {
 		if 1+countDir(g, row, col, d[0], d[1], player)+countDir(g, row, col, -d[0], -d[1], player) >= 4 {
 			return true
 		}
@@ -28,45 +39,45 @@ func CheckWin(g *[6][7]int, row, col, player int) bool {
 	return false
 }
 
-func countDir(g *[6][7]int, row, col, dr, dc, player int) int {
-	count := 0
+func countDir(g *[6][7]int, r, c, dr, dc, player int) int {
+	n := 0
 	for {
-		row += dr //rangé 
-		col += dc 
-		if row < 0 || row >= 6 || col < 0 || col >= 7 || g[row][col] != player {
-			break 
+		r += dr
+		c += dc
+		if r < 0 || r >= 6 || c < 0 || c >= 7 {
+			break
 		}
-		count ++
+		if g[r][c] != player {
+			break
+		}
+		n++
 	}
-	return count
+	return n
 }
 
-func IsDraw (g *[6][7]int) bool {
-	for col := 0; col < 7; col++ {
-		if g[0][col] == Empty {
-		return false
+func IsDraw(g *[6][7]int) bool {
+	for c := 0; c < 7; c++ {
+		if g[0][c] == Empty {
+			return false
 		}
 	}
-	return true 
+	return true
 }
 
-func Grille_Jeton(y int, nbjoueur int, Grille *[6][7]int) string {
-	if y < 0 || y >= 7 {
-        return "Erreur: colonne invalide"
-    }
-    
-	for x := 5; x >= 0; x--{
-		if Grille[x][y] == 0 {
-			Grille[x][y] = nbjoueur
-			if CheckWin(Grille, x, y, nbjoueur) {
-				return fmt.Sprintf("Le joueur %d a gagné !", nbjoueur)
-			} else if IsDraw(Grille) {
-				return("Match nul !!")
-			} else {
-				return( "Jeton placé avec succès")
-			}
+// Message simple, utilisé par /play
+func Grille_Jeton(col int, player int, g *[6][7]int) string {
+	row, ok := DropToken(g, col, player)
+	if !ok {
+		if col < 0 || col >= 7 {
+			return "Erreur: colonne invalide"
 		}
+		return "Erreur: colonne pleine"
 	}
-	fmt.Print(Grille)
-	return "Erreur: colonne pleine"
+	if CheckWin(g, row, col, player) {
+		return "Jeton placé: victoire"
+	}
+	if IsDraw(g) {
+		return "Jeton placé: match nul"
+	}
+	return "Jeton placé avec succès"
 }
