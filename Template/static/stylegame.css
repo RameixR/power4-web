@@ -9,6 +9,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     color: white;
+    overflow: hidden
 }
 
 .container {
@@ -16,17 +17,9 @@ body {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 55px rgba(0, 0, 0, 0.3);
+    overflow: auto
 }
-
-/* --- Titre --- */
-h1 {
-    font-size: 3rem;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
 /* --- Boutons --- */
 .buttons button {
     display: block;
@@ -44,7 +37,7 @@ h1 {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 6px;
-    margin: 10% auto
+    margin: 1rem auto
 }
 
 .colsbouton {
@@ -56,7 +49,7 @@ h1 {
     display: grid;
     width: 80vw;
     max-width: 700px;
-    height: 70vh;
+    height: 60vh;
     grid-template-columns: repeat(7, 1fr);
     /*7 colonne égale avec 1fraction = prend chacun 1 fraction dispo pour compléter l'espace*/
     gap: 1vw;
