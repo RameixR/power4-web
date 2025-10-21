@@ -10,10 +10,12 @@ import (
 )
 
 var (
-	mu      sync.Mutex
-	grid    [6][7]int
-	lastMsg string
-	tpl     = template.Must(template.ParseFiles(
+	mu            sync.Mutex
+	grid          [6][7]int
+	lastMsg       string
+	currentPlayer = power4.Player1
+	gameOver      bool
+	tpl           = template.Must(template.ParseFiles(
 		"Template/Index.html",
 		"Template/jeux.html",
 		"Template/regles.html",
@@ -21,9 +23,11 @@ var (
 )
 
 type PageData struct {
-	Grid    [6][7]int
-	Message string
-	Cols    []int
+	Grid     [6][7]int
+	Message  string
+	Cols     []int
+	Current  int
+	GameOver bool
 }
 
 func main() {
@@ -48,9 +52,11 @@ func main() {
 func handleGame(w http.ResponseWriter, r *http.Request) {
 	mu.Lock()
 	data := PageData{
-		Grid:    grid,
-		Message: lastMsg,
-		Cols:    []int{0, 1, 2, 3, 4, 5, 6},
+		Grid:     grid,
+		Message:  lastMsg,
+		Cols:     []int{0, 1, 2, 3, 4, 5, 6},
+		Current:  currentPlayer,
+		GameOver: gameOver,
 	}
 	lastMsg = ""
 	mu.Unlock()
@@ -65,10 +71,44 @@ func handlePlay(w http.ResponseWriter, r *http.Request) {
 	col, _ := strconv.Atoi(r.FormValue("col"))
 
 	mu.Lock()
-	lastMsg = power4.Grille_Jeton(col, power4.Player1, &grid)
-	mu.Unlock()
+	defer mu.Unlock()
+	if gameOver {
+		lastMsg = "Partie terminée, veuillez cliquer sur réinitialiser"
+		http.Redirect(w, r, "/jeux.html", http.StatusSeeOther)
+		return
+	}
+
+	row, ok := power4.DropToken(&grid, col, currentPlayer)
+	if !ok {
+		lastMsg = "Colonne pleine"
+		http.Redirect(w, r, "/jeux.html", http.StatusSeeOther)
+		return
+	}
+
+	if power4.CheckWin(&grid, row, col, currentPlayer) {
+		lastMsg = "Victoire du joueur " + strconv.Itoa(currentPlayer) // espace ajouté
+		gameOver = true
+		http.Redirect(w, r, "/jeux.html", http.StatusSeeOther)
+		return
+	}
+
+	if power4.IsDraw(&grid) {
+		lastMsg = "Match nul"
+		gameOver = true
+		http.Redirect(w, r, "/jeux.html", http.StatusSeeOther)
+		return
+	}
+
+	if currentPlayer == power4.Player1 {
+		currentPlayer = power4.Player2
+		lastMsg = "A joueur 2 de jouer"
+	} else {
+		currentPlayer = power4.Player1
+		lastMsg = "A joueur 1 de jouer"
+	}
 
 	http.Redirect(w, r, "/jeux.html", http.StatusSeeOther)
+
 }
 
 func handleReset(w http.ResponseWriter, r *http.Request) {
@@ -78,7 +118,9 @@ func handleReset(w http.ResponseWriter, r *http.Request) {
 	}
 	mu.Lock()
 	power4.Init_Grille(&grid)
-	lastMsg = "Grille réinitialisée"
+	currentPlayer = power4.Player1 // FIX: repartir à J1
+	gameOver = false               // FIX: débloquer la partie
+	lastMsg = "Grille réinitialisée — Joueur 1 commence"
 	mu.Unlock()
 	http.Redirect(w, r, "/jeux.html", http.StatusSeeOther)
 }
