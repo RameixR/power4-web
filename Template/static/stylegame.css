@@ -55,7 +55,7 @@ body {
     grid-template-columns: repeat(7, 1fr);
     /*7 colonne égale avec 1fraction = prend chacun 1 fraction dispo pour compléter l'espace*/
     gap: 1vw;
-    background: #317AC1;
+    background: #ce23b1;
     padding: 1vw;
     border-radius: 10px;
     margin: 0 auto;
