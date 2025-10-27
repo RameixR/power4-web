@@ -36,7 +36,7 @@ func main() {
 	// Statique (CSS, images…)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("Template/static"))))
 
-	// Pages rendues via html/template
+	// Rendue pages html/template
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { render(w, "Index.html", nil) })
 	http.HandleFunc("/regles.html", func(w http.ResponseWriter, r *http.Request) { render(w, "regles.html", nil) })
 	http.HandleFunc("/jeux.html", handleGame)
