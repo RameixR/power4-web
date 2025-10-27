@@ -73,10 +73,10 @@ func Grille_Jeton(col int, player int, g *[6][7]int) string {
 		return "Erreur: colonne pleine"
 	}
 	if CheckWin(g, row, col, player) {
-		return "Jeton placé: victoire"
+		return "Fleur placé: victoire"
 	}
 	if IsDraw(g) {
-		return "Jeton placé: match nul"
+		return "Fleur placé: match nul"
 	}
-	return "Jeton placé avec succès"
+	return "Fleur placé avec succès"
 }

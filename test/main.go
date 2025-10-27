@@ -86,7 +86,11 @@ func handlePlay(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if power4.CheckWin(&grid, row, col, currentPlayer) {
-		lastMsg = "Victoire du joueur " + strconv.Itoa(currentPlayer) // espace ajouté
+		if currentPlayer == 1  {
+			lastMsg = "Victoire de Marguerite" 
+		}else {
+			lastMsg = "Victoire de Rose" 
+		}
 		gameOver = true
 		http.Redirect(w, r, "/jeux.html", http.StatusSeeOther)
 		return
@@ -101,10 +105,10 @@ func handlePlay(w http.ResponseWriter, r *http.Request) {
 
 	if currentPlayer == power4.Player1 {
 		currentPlayer = power4.Player2
-		lastMsg = "A joueur 2 de jouer"
+		lastMsg = "A Rose de jouer"
 	} else {
 		currentPlayer = power4.Player1
-		lastMsg = "A joueur 1 de jouer"
+		lastMsg = "A Marguerite de jouer"
 	}
 
 	http.Redirect(w, r, "/jeux.html", http.StatusSeeOther)

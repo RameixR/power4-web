@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background-image: url(/static/Background.png);
+    background-position: center;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -20,7 +21,8 @@ body {
     box-shadow: 0 0 55px rgba(0, 0, 0, 0.3);
     overflow: auto
 }
-/* --- Boutons --- */
+
+/*boutons*/
 .buttons button {
     display: block;
     width: 100%;
@@ -71,11 +73,15 @@ body {
 
 
 .p1 {
-    background: red
+    background-image: url(/static/348.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .p2 {
-    background: yellow
+    background-image: url(/static/rose.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .statut {
