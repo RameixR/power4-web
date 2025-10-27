@@ -64,7 +64,6 @@ func IsDraw(g *[6][7]int) bool {
 	return true
 }
 
-// Message simple, utilisé par /play
 func Grille_Jeton(col int, player int, g *[6][7]int) string {
 	row, ok := DropToken(g, col, player)
 	if !ok {
